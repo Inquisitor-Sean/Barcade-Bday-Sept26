@@ -111,13 +111,3 @@ video {
   white-space: nowrap;
   border: 0;
 }
-/* Scale proportionally from desktop through 4K */
-@media (min-width: 1600px) {
-  :root {
-    font-size: clamp(
-      100%,
-      calc(100% + (100vw - 1600px) / 140),
-      200%
-    );
-  }
-}
