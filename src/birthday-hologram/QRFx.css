@@ -1,0 +1,94 @@
+.qr-panel {
+  max-width: 300px;
+  margin: 20px auto;
+  padding: 18px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  text-align: center;
+}
+
+.qr-panel p,
+.qr-pending {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.qr-panel a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  line-height: 1.5;
+  text-underline-offset: 5px;
+}
+
+.qr-art {
+  position: relative;
+  width: 240px;
+  max-width: 100%;
+  aspect-ratio: 1;
+  margin: auto auto 10px;
+  background: white;
+}
+
+.qr-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+  object-fit: contain;
+  opacity: 0;
+}
+
+.qr-art svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: #071018;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  pointer-events: none;
+}
+
+.qr-art path {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+}
+
+.qr-ready img {
+  opacity: 1;
+}
+
+.qr-ready path {
+  animation: qr-draw 1.5s ease-in-out forwards;
+}
+
+.qr-ready svg {
+  animation: qr-unveil 1.5s ease forwards;
+}
+
+@keyframes qr-draw {
+  0% { stroke-dashoffset: 2000; }
+  50% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 2000; }
+}
+
+@keyframes qr-unveil {
+  0%, 70% { opacity: 1; }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.reduced-motion .qr-ready svg {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qr-ready svg {
+    display: none;
+  }
+}
