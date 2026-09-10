@@ -1,0 +1,458 @@
+.game-about {
+  width: 100%;
+  max-width: 100rem;
+  margin: 0 auto;
+  padding-block: clamp(0.5rem, 2vh, 2rem);
+  font-family: "Invite UI", "Segoe UI", system-ui, sans-serif;
+}
+
+.game-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.game-back {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, var(--line) 50%, transparent);
+  border-radius: 50%;
+  color: var(--text);
+  background: transparent;
+  font: inherit;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.game-version {
+  color: var(--muted);
+  font-family: system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
+.game-hero {
+  padding-block: clamp(1.25rem, 3vh, 3rem);
+}
+
+.game-about .event-title {
+  margin: 0;
+  font-family: "Invite UI", "Segoe UI", system-ui, sans-serif;
+  font-size: clamp(2rem, 1rem + 3.5vw, 6rem);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  color: var(--title);
+  background: none;
+  text-shadow: 0 0 1.5rem
+    color-mix(in srgb, var(--glow) 22%, transparent);
+  overflow-wrap: anywhere;
+}
+
+.game-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem clamp(1rem, 3vw, 3rem);
+  margin: 1.5rem 0 0;
+}
+
+.game-stats > div,
+.game-inventory > div {
+  min-width: 0;
+}
+
+.game-stats dt,
+.game-inventory dt,
+.game-tile h2,
+.game-save h3 {
+  margin: 0 0 0.4rem;
+  color: var(--accent);
+  font-family: PixelOperator, system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0.07em;
+}
+
+.game-stats dd {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(1rem, 0.9rem + 0.3vw, 1.4rem);
+  font-variant-numeric: tabular-nums;
+}
+
+.game-health {
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr 1fr;
+  gap: clamp(0.75rem, 1.5vw, 1.5rem);
+}
+
+.game-tile {
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  padding: clamp(1.25rem, 2vw, 2.5rem);
+  border: 1px solid color-mix(in srgb, var(--line) 50%, transparent);
+  border-radius: 1.125rem 0.375rem 1.125rem 0.375rem;
+  color: var(--text);
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--accent) 5%, transparent),
+      transparent 60%
+    ),
+    color-mix(in srgb, var(--surface) 92%, transparent);
+  box-shadow: inset 0 1px 0
+    color-mix(in srgb, var(--rim) 10%, transparent);
+}
+
+/* Distortion stays on a thin decorative edge. */
+.game-tile::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: 12%;
+  left: 12%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent),
+    var(--rim),
+    transparent
+  );
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.game-tile:nth-child(2)::after {
+  animation-delay: 1.1s;
+}
+
+.game-tile:nth-child(3)::after {
+  animation-delay: 2.2s;
+}
+
+.game-quest-copy {
+  margin: 0.75rem 0 1.5rem;
+  font-size: clamp(1.25rem, 1rem + 0.6vw, 1.875rem);
+  line-height: 1.45;
+  color: var(--title);
+}
+
+.game-save {
+  padding-top: 1rem;
+  border-top: 1px solid
+    color-mix(in srgb, var(--line) 30%, transparent);
+}
+
+.game-save p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.game-value {
+  display: block;
+  margin: 0.75rem 0;
+  font-size: clamp(1.15rem, 1rem + 0.5vw, 1.75rem);
+  line-height: 1.4;
+  color: var(--title);
+}
+
+.game-time {
+  margin: 0 0 1rem;
+  color: var(--accent);
+  font-size: 1.125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.game-muted,
+.game-address {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.game-location {
+  text-decoration: none;
+}
+
+.game-address {
+  display: inline-block;
+  padding-block: 0.5rem;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+}
+
+.game-inventory {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0;
+  padding-block: 1rem;
+}
+
+.game-inventory dd {
+  margin: 0;
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.game-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.game-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  min-height: 3rem;
+  max-width: 100%;
+  padding: 0.8rem 1.125rem;
+  border: 1px solid
+    color-mix(in srgb, var(--button) 45%, transparent);
+  border-radius: 0.75rem 0.25rem 0.75rem 0.25rem;
+
+  font-family: "Invite UI", "Segoe UI", system-ui, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.45;
+  text-align: start;
+  text-decoration: none;
+  white-space: normal;
+
+  color: var(--buttonText);
+  background:
+    linear-gradient(
+      120deg,
+      color-mix(in srgb, var(--button) 7%, transparent),
+      transparent
+    ),
+    var(--surface);
+
+  cursor: pointer;
+  touch-action: manipulation;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.game-button > span {
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.game-button-primary {
+  border-color: var(--button);
+  box-shadow: inset 0 0 1.25rem
+    color-mix(in srgb, var(--button) 10%, transparent);
+}
+
+.game-button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.game-back:focus-visible,
+.game-button:focus-visible,
+.game-faq summary:focus-visible,
+.game-about a:focus-visible {
+  outline: 2px solid var(--rim);
+  outline-offset: 4px;
+}
+
+.game-panel-content {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.game-panel-content section {
+  min-width: 0;
+}
+
+.game-panel-content h3 {
+  margin: 0 0 0.6rem;
+  color: var(--accent);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.game-panel-content p {
+  margin: 0.5rem 0;
+  line-height: 1.7;
+}
+
+.game-faq {
+  padding-block: 0.75rem;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--line) 30%, transparent);
+}
+
+.game-faq summary {
+  padding-block: 0.35rem;
+  color: var(--text);
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+.game-faq p {
+  color: var(--muted);
+}
+
+.game-qr-placeholder {
+  display: grid;
+  justify-items: center;
+  gap: 0.75rem;
+  padding: 2rem 1rem;
+  border: 1px dashed var(--line);
+  border-radius: 0.75rem;
+  text-align: center;
+}
+
+.game-qr-placeholder > span {
+  font-family: system-ui, sans-serif;
+  font-size: 3rem;
+  color: var(--accent);
+}
+
+.game-qr-placeholder p {
+  color: var(--muted);
+}
+
+.game-cancelled {
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  border: 2px solid currentColor;
+  color: var(--text);
+  font-weight: 700;
+}
+
+@keyframes game-edge-shift {
+  0%, 84%, 100% {
+    transform: translateX(0);
+  }
+  87% {
+    transform: translateX(-3px);
+  }
+  90% {
+    transform: translateX(2px);
+  }
+  93% {
+    transform: translateX(-1px);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .game-tile:hover::after {
+    animation: game-edge-shift 3.6s linear infinite;
+  }
+
+  .game-button:not(:disabled):hover {
+    border-color: var(--rim);
+    box-shadow: inset 0 0 1.5rem
+      color-mix(in srgb, var(--button) 14%, transparent);
+  }
+
+  .game-back:hover,
+  .game-location:hover {
+    color: var(--accent);
+  }
+}
+
+@media (max-width: 850px) {
+  .game-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .game-quest {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 560px) {
+  .game-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .game-quest {
+    grid-column: auto;
+  }
+
+  .game-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .game-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .game-actions .game-button-primary {
+    grid-column: 1 / -1;
+  }
+
+  .game-inventory {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .game-inventory > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .game-inventory dd {
+    text-align: end;
+  }
+}
+
+.high-contrast .game-tile,
+.high-contrast .game-button {
+  border-color: var(--line);
+  background: var(--surface);
+  box-shadow: none;
+}
+
+.high-contrast .game-tile::after {
+  display: none;
+}
+
+.reduced-motion .game-tile::after {
+  animation: none;
+}
+
+.reduced-motion .game-button {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-tile::after {
+    animation: none;
+  }
+
+  .game-button {
+    transition: none;
+  }
+}
