@@ -1,141 +1,130 @@
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { birthday, inviteEvent, shareLinks } from './event'
-import { eventDate, eventReady, googleCalendarUrl } from './calendar'
-import QRFx from './QRFx'
+import { event } from './event'
 
 interface Props {
   onBack: () => void
+  onShare: () => void
+  onDetails: () => void
+  onPhotos: () => void
+  onCalendar: () => void
+  cancelled: boolean
 }
 
-export default function HologramInvite({ onBack }: Props) {
+export default function HologramInvite(props: Props) {
   const { t, i18n } = useTranslation()
-  const [backup, setBackup] = useState(false)
-
-  const ready = eventReady(inviteEvent)
-  const date = eventDate(inviteEvent, i18n.resolvedLanguage || 'en')
-  const calendarUrl = googleCalendarUrl(inviteEvent, t('briefing'))
-
+  const locale = i18n.resolvedLanguage || 'en'
+  const date = new Intl.DateTimeFormat(locale, {
+    weekday: 'long',
+    month: 'long',
+    day: 'numeric',
+    timeZone: event.timeZone,
+  }).format(new Date(`${event.date}T12:00:00-07:00`))
+  const start =
+    event.startsAt && Number.isFinite(Date.parse(event.startsAt))
+      ? new Intl.DateTimeFormat(locale, {
+          hour: 'numeric',
+          minute: '2-digit',
+          timeZone: event.timeZone,
+        }).format(new Date(event.startsAt))
+      : ''
   return (
-    <main className="invite-view">
-      <button className="back-button" onClick={onBack}>
+    <main className="event-view">
+      <button
+        type="button"
+        className="text-button back-link"
+        onClick={props.onBack}
+      >
         ← {t('back')}
       </button>
-
-      <article className="invitation-card">
-        <section className="hologram-stage">
-          <div className="projection-grid" aria-hidden="true" />
-          <div className="projection-orbit" aria-hidden="true" />
-
-          <div className="signal-heading">
-            <span>{t('edition')}</span>
-            <span>2026</span>
-          </div>
-
-          <div className="invite-title-row">
+      <div className="event-composition">
+        <header className="event-hero">
+          <p className="overline">{t('eventTop')}</p>
+          <h1
+            id="invitation-title"
+            tabIndex={-1}
+            className="holo-title event-title"
+          >
+            {t('eventTitle')}
+          </h1>
+          <p className="event-intro">{t('eventSub')}</p>
+          <span className="event-level" aria-hidden="true">
+            {event.level}
+          </span>
+        </header>
+        <section className="event-information" aria-label={t('details')}>
+          <dl className="event-facts">
             <div>
-              <p className="birthday-label">{t('birthday')}</p>
-              <h1 id="invitation-title" tabIndex={-1}>
-                {inviteEvent.host}
-              </h1>
-              <p className="hero-subtitle">{t('subtitle')}</p>
+              <dt>{t('when')}</dt>
+              <dd>
+                <time dateTime={event.date}>{date}</time>
+                <small>
+                  {start ? `${start} · ${t('until')}` : t('timePending')}
+                  <span className="timezone">Los Angeles · PDT</span>
+                </small>
+              </dd>
             </div>
-
-            <div className="level-seal">
-              <span>{t('level')}</span>
-              <strong>{birthday.level}</strong>
-            </div>
-          </div>
-
-          <div className="art-footer">
-            <span>
-              <span aria-hidden="true">♥ </span>
-              {t('health')}
-              <span className="health-segments" aria-hidden="true">
-                {' '}▰▰▰▰▰▰▰▰
-              </span>
-              <span className="sr-only"> {t('fine')}</span>
-            </span>
-
-            <span>
-              {t('survived')}{' '}
-              <strong>
-                {new Intl.NumberFormat(i18n.resolvedLanguage).format(
-                  birthday.daysSurvived,
-                )}
-              </strong>
-            </span>
-          </div>
-        </section>
-
-        <section className="event-content">
-          <div className="details-and-action">
-            <dl className="event-details">
-              <div>
-                <dt>{t('when')}</dt>
-                <dd>{date || t('datePending')}</dd>
-              </div>
-
-              <div>
-                <dt>{t('where')}</dt>
-                <dd>
-                  {inviteEvent.venue || t('venuePending')}
-                  <small>{inviteEvent.address || t('addressPending')}</small>
-                </dd>
-              </div>
-            </dl>
-
-            <div className="calendar-action">
-              {ready ? (
+            <div>
+              <dt>{t('where')}</dt>
+              <dd>
                 <a
-                  className="primary-button"
-                  href={calendarUrl}
+                  href={event.venueUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {t('addCalendar')} ↗
+                  {event.venue} <span aria-hidden="true">↗</span>
                 </a>
-              ) : (
-                <button className="primary-button" disabled>
-                  {t('addCalendar')}
-                </button>
-              )}
-
-              <p>{t(ready ? 'calendarHint' : 'detailsPending')}</p>
-
-              <button
-                className="back-button"
-                aria-expanded={backup}
-                aria-controls="calendar-backup"
-                onClick={() => setBackup(value => !value)}
-              >
-                {t('notWorking')}
-              </button>
-
-              {backup && (
-                <div id="calendar-backup">
-                  <QRFx
-                    url={shareLinks.calendarUrl}
-                    imageSrc={shareLinks.calendarQr}
-                    kind="calendar"
-                  />
-                </div>
-              )}
+                <small>
+                  <a
+                    href={event.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {event.address} ↗
+                  </a>
+                </small>
+              </dd>
             </div>
+          </dl>
+          <div className="event-rules">
+            <p>{t('openNote')}</p>
+            <p>{t('noDinner')}</p>
+            <p>{t('drinksTitle')}</p>
           </div>
-
-          <div className="invite-notes">
-            <p>
-              <strong>{t('know')}</strong>
-              {t('briefing')}
-            </p>
-            <p>
-              <strong>{t('record')}</strong>
-              {t('drinks')}
-            </p>
+          <div className="event-actions">
+            <button
+              type="button"
+              className="pill-button"
+              disabled={props.cancelled}
+              onClick={props.onCalendar}
+            >
+              {t('calendar')} <span aria-hidden="true">↗</span>
+            </button>
+            <button
+              type="button"
+              className="text-button"
+              onClick={props.onShare}
+            >
+              {t('share')} ↗
+            </button>
           </div>
+          <nav className="event-links" aria-label={t('extra')}>
+            <button
+              type="button"
+              className="text-button"
+              onClick={props.onDetails}
+            >
+              {t('details')} <span aria-hidden="true">+</span>
+            </button>
+            <button
+              type="button"
+              className="text-button"
+              onClick={props.onPhotos}
+            >
+              {t('photos')} <span aria-hidden="true">+</span>
+            </button>
+          </nav>
         </section>
-      </article>
+      </div>
     </main>
   )
 }

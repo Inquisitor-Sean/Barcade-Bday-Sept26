@@ -1,4 +1,4 @@
-import { event, invitationUrl } from './event'
+import { event, invitationUrl } from '../event'
 export function calendarReady() {
   return (
     event.startsAt.startsWith(`${event.date}T`) &&

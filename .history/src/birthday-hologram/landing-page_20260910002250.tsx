@@ -15,7 +15,7 @@ import HologramInvite from './HologramInvite'
 import SandHologram from '../SandHologram'
 import Panel from '../Panel'
 import Community from './Community'
-import QRFx from './QRFx'
+import QRFx from '../QRFx'
 
 type PanelName =
   | 'language'
