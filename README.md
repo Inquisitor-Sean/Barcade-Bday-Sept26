@@ -23,7 +23,7 @@ The build includes TypeScript checking. The tests exercise motion permission/lif
 
 Edit `src/birthday-hologram/event.ts`:
 
-- **`startsAt`** is intentionally empty. Supply the confirmed September 26 start as `2026-09-26THH:mm:ss-07:00` (24-hour time). The end is **September 27 at 1 a.m. in Los Angeles**. Calendar creation stays unavailable until the start is valid.
+- The event runs **September 26, 9:30 p.m. → September 27, 1 a.m. in Los Angeles**. `startsAt` is `2026-09-26T21:30:00-07:00`; calendar creation is enabled. Guests can drop in whenever.
 - **`publishedUrl`** can hold the final public website address. Leave it empty during development to use the current page address.
 - **`communityEndpoint`** enables the shared guest Instagram form after connecting the adapter below. Empty means no guest submission form; Sean’s links still work.
 - **`additionalLink`** is a spare event link, hidden until filled.

@@ -2,7 +2,7 @@ export const event = {
   host: 'Sean',
   level: 37,
   date: '2026-09-26',
-  startsAt: '',
+  startsAt: '2026-09-26T21:30:00-07:00',
   endsAt: '2026-09-27T01:00:00-07:00',
   timeZone: 'America/Los_Angeles',
   venue: 'Barcade Los Angeles',
