@@ -1,0 +1,17 @@
+BARCADE RECOVERY
+
+Extract into your project root (the folder containing package.json), replacing included files.
+Keep your existing public/qr.svg: it was not available in this workspace and is not included.
+Run yarn install, then yarn dev. No new packages have been added.
+This includes the latest landing CSS and dense circular particle lock, existing event page, colors, languages, motion, fonts, and build files.
+The proposed three-tile information-page redesign has not been implemented yet.
+Existing saved color choices stay in browser storage; use the Colors panel to change them.
+
+Repository rename:
+Vite uses base: './' so assets are not tied to the old repository name.
+The included GitHub Pages workflow targets main. Pages must use GitHub Actions in your repository settings.
+Git remote configuration is not included or changed by this archive.
+If the published URL changed, regenerate public/qr.svg for the new address.
+The package name is an internal label and does not determine the GitHub Pages address.
+
+No build or tests were run for this recovery, as requested earlier.

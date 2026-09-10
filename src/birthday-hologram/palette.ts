@@ -1,17 +1,17 @@
 export const defaultPalette = {
-  background: '#050403',
-  surface: '#17130e',
+  background: '#14100d',
+  surface: '#211a14',
   text: '#f4ead8',
-  muted: '#baac95',
-  title: '#eee0c4',
-  accent: '#d4b477',
-  dust: '#a9844e',
-  rim: '#ffedbd',
-  glow: '#ad7945',
-  line: '#69573d',
-  button: '#ddc595',
-  buttonText: '#18120a',
-  level: '#e4c797',
+  muted: '#c3b7a6',
+  title: '#f3e9d7',
+  accent: '#ffad59',
+  dust: '#a8845c',
+  rim: '#d8f1ff',
+  glow: '#b86c35',
+  line: '#b68b60',
+  button: '#dcb788',
+  buttonText: '#f4ead8',
+  level: '#efc895',
 }
 export type Palette = typeof defaultPalette
 export type ColorKey = keyof Palette
@@ -37,7 +37,7 @@ export function savedAppearance() {
   }
   try {
     const saved = JSON.parse(
-      localStorage.getItem('after-hours-appearance') || '{}',
+      localStorage.getItem('after-hours-lock-appearance') || '{}',
     )
     for (const key of colorKeys)
       if (/^#[\da-f]{6}$/i.test(saved?.colors?.[key]))
