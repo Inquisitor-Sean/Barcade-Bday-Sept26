@@ -11,11 +11,10 @@ interface Props {
 export default function Panel({ title, children, onClose }: Props) {
   const { t } = useTranslation()
   const headingId = useId()
-
   const dialogRef = useRef<HTMLDialogElement>(null)
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
   const closeCallback = useRef(onClose)
-  const mounted = useRef(false)
-  const dismissed = useRef(false)
+  const closing = useRef(false)
   const outsidePointer = useRef<number | null>(null)
 
   useEffect(() => {
@@ -31,13 +30,14 @@ export default function Panel({ title, children, onClose }: Props) {
         ? document.activeElement
         : null
 
-    mounted.current = true
-    dismissed.current = false
+    closing.current = false
 
     if (!dialog.open) dialog.showModal()
+    closeButtonRef.current?.focus({ preventScroll: true })
 
     return () => {
-      mounted.current = false
+      closing.current = true
+      outsidePointer.current = null
 
       if (dialog.open) dialog.close()
 
@@ -48,14 +48,9 @@ export default function Panel({ title, children, onClose }: Props) {
   }, [])
 
   function dismiss() {
-    if (!mounted.current || dismissed.current) return
-
-    dismissed.current = true
+    if (closing.current) return
+    closing.current = true
     outsidePointer.current = null
-
-    const dialog = dialogRef.current
-    if (dialog?.open) dialog.close()
-
     closeCallback.current()
   }
 
@@ -73,18 +68,20 @@ export default function Panel({ title, children, onClose }: Props) {
       }}
       onPointerDown={event => {
         outsidePointer.current =
+          event.isPrimary &&
+          event.button === 0 &&
           event.target === event.currentTarget
             ? event.pointerId
             : null
       }}
       onPointerUp={event => {
-        const tappedOutside =
-          event.target === event.currentTarget &&
-          outsidePointer.current === event.pointerId
+        const outside =
+          outsidePointer.current === event.pointerId &&
+          event.target === event.currentTarget
 
         outsidePointer.current = null
 
-        if (tappedOutside) {
+        if (outside) {
           event.preventDefault()
           dismiss()
         }
@@ -98,9 +95,10 @@ export default function Panel({ title, children, onClose }: Props) {
           <h2 id={headingId}>{title}</h2>
 
           <button
+            ref={closeButtonRef}
             type="button"
             className="icon-button"
-            aria-label={t('close')}
+            aria-label={t('close', { defaultValue: 'Close' })}
             onClick={dismiss}
           >
             <span aria-hidden="true">×</span>

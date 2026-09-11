@@ -435,3 +435,8 @@ export default function HologramInvite({
               </section>
             </>
           )}
+        </Panel>
+      )}
+    </main>
+  )
+}
