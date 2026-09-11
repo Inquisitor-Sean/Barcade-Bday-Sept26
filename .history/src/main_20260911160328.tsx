@@ -4,10 +4,9 @@ import { createRoot } from 'react-dom/client'
 import './birthday-hologram/i18n'
 import './birthday-hologram/about-copy'
 
-import './index.css'
+
 import './birthday-hologram/Landing-Finish.css'
 import './birthday-hologram/About-Game.css'
-import './birthday-hologram/UI-Finish.css'
 
 import App from './App'
 
