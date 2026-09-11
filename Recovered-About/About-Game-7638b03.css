@@ -1,0 +1,881 @@
+@font-face {
+  font-family: "About F-Zero";
+  src: url("../../public/fonts/F-ZeroSNES.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+/* Information-page background */
+
+.experience.is-event {
+  min-height: 100svh;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  background: #000;
+  background-image: none;
+  color: #edf9f7;
+}
+
+.experience.is-event::before,
+.experience.is-event::after {
+  content: none;
+}
+
+.experience.is-event .sand-scene,
+.experience.is-event .black-hole-frame,
+.experience.is-event .signal-tear {
+  display: none;
+}
+
+/* Page foundation */
+
+.experience.is-event .game-about {
+  --info-accent: var(--accent, #65f6df);
+  --info-text: var(--text, #edf9f7);
+  --info-muted: var(--muted, #bdd2d4);
+  --info-title: var(--title, #fff);
+  --info-surface: var(--surface, #101114);
+  --info-line: var(--line, #8393a5);
+  --info-button: var(--button, #bcd9ee);
+  --info-button-text: var(--buttonText, #f5f7fa);
+  --info-border: color-mix(in srgb, var(--info-line) 45%, transparent);
+  --info-font: "Segoe UI", Arial, sans-serif;
+  --info-heading: "About F-Zero", "Segoe UI", sans-serif;
+  --info-gap: clamp(0.875rem, 1.5vw, 2rem);
+  --info-padding: clamp(1.25rem, 2vw, 2.75rem);
+
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  max-width: 100rem;
+  min-width: 0;
+  height: auto;
+  max-height: none;
+  margin: 0 auto;
+  padding: clamp(1rem, 2vw, 2rem) 0 3rem;
+  overflow: visible;
+
+  color: var(--info-text);
+  background: #000;
+  font-family: var(--info-font);
+  font-size: clamp(1rem, 0.94rem + 0.2vw, 1.375rem);
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: normal;
+  text-align: start;
+  text-shadow: none;
+
+  opacity: 1;
+  filter: none;
+  transform: none;
+  animation: none;
+  mix-blend-mode: normal;
+  -webkit-text-fill-color: currentColor;
+}
+
+.game-about,
+.game-about *,
+.game-about *::before,
+.game-about *::after {
+  box-sizing: border-box;
+}
+
+.game-about :where(h1, h2, h3, p, dl, dd) {
+  margin: 0;
+}
+
+.game-about :where(p, dd, a, button, summary) {
+  overflow-wrap: anywhere;
+}
+
+.game-about :where(button, input, select, textarea) {
+  font: inherit;
+}
+
+.game-about :where(h1, h2, h3) {
+  text-wrap: balance;
+}
+
+.game-about :where(button, a) {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Back and version */
+
+.game-about .game-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: clamp(1.5rem, 3vw, 3rem);
+}
+
+.game-about .game-back {
+  display: inline-grid;
+  place-items: center;
+  width: 3rem;
+  min-height: 3rem;
+  padding: 0;
+  border: 1px solid var(--info-border);
+  border-radius: 0.625rem;
+  background: var(--info-surface);
+  color: var(--info-accent);
+  font: 1.5rem/1 var(--info-font);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.game-about .game-version {
+  color: var(--info-muted);
+  font: 600 0.75rem/1.5 var(--info-font);
+  letter-spacing: 0.14em;
+}
+
+/* Heading: real text, no particle-text treatment */
+
+.game-about .game-hero {
+  position: relative;
+  display: block;
+  height: auto;
+  min-height: 0;
+  margin-bottom: clamp(1.5rem, 3vw, 3rem);
+  background: none;
+}
+
+.experience.is-event .game-about h1#invitation-title {
+  position: relative;
+  display: block;
+  width: auto;
+  max-width: 100%;
+  margin: 0;
+  padding: 0.15em 0;
+
+  color: var(--info-title);
+  -webkit-text-fill-color: var(--info-title);
+  background: none;
+  background-clip: border-box;
+
+  font-family: var(--info-heading);
+  font-size: clamp(1.75rem, 1rem + 2.5vw, 5rem);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0.015em;
+
+  opacity: 1;
+  filter: none;
+  mask: none;
+  clip-path: none;
+  transform: none;
+  animation: none;
+  text-shadow: none;
+  mix-blend-mode: normal;
+}
+
+.game-about #invitation-title::before,
+.game-about #invitation-title::after {
+  content: none;
+}
+
+/* Panel material */
+
+.game-about .game-tile,
+.game-about .game-stats,
+.game-about .game-inventory > div {
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  overflow: hidden;
+
+  border: 1px solid var(--info-border);
+  border-radius: 0.875rem;
+  background:
+    radial-gradient(
+      ellipse at 100% 0%,
+      color-mix(in srgb, var(--info-accent) 8%, transparent),
+      transparent 65%
+    ),
+    var(--info-surface);
+
+  color: var(--info-text);
+  opacity: 1;
+  filter: none;
+  transform: none;
+  animation: none;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.035);
+
+  transition: border-color 180ms ease;
+}
+
+.game-about .game-tile::before,
+.game-about .game-stats::before,
+.game-about .game-inventory > div::before {
+  content: none;
+}
+
+.game-about .game-tile::after,
+.game-about .game-stats::after,
+.game-about .game-inventory > div::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: auto 12% 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--info-accent),
+    transparent
+  );
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.game-about .game-tile > :not(.about-circuit-art),
+.game-about .game-stats > :not(.about-circuit-art),
+.game-about .game-inventory > div > :not(.about-circuit-art) {
+  position: relative;
+  z-index: 2;
+}
+
+/* Circuit geometry */
+
+.game-about .about-circuit-art {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+  color: var(--info-accent);
+  pointer-events: none;
+  opacity: 1;
+}
+
+.game-about .about-circuit-art > svg {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  overflow: hidden;
+
+  fill: none;
+  stroke: none;
+  color: var(--info-accent);
+  opacity: 0.35;
+
+  mask-image: linear-gradient(
+    90deg,
+    rgb(0 0 0 / 0.12),
+    rgb(0 0 0 / 0.25) 50%,
+    #000
+  );
+}
+
+.game-about .about-circuit-art svg path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.game-about .about-circuit-traces {
+  opacity: 0.45;
+}
+
+.game-about .about-circuit-current {
+  opacity: 0;
+}
+
+.game-about .about-circuit-current path {
+  stroke-dasharray: 12 130;
+}
+
+.game-about .about-circuit-nodes circle {
+  fill: var(--info-accent);
+  stroke: none;
+  opacity: 0.65;
+}
+
+.game-about .about-circuit-scan {
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 5px,
+    rgb(255 255 255 / 0.12) 5px 6px
+  );
+}
+
+.game-about .about-circuit-tear {
+  position: absolute;
+  inset: 42% -10px auto;
+  height: 20px;
+  opacity: 0;
+  border-block: 1px solid var(--info-accent);
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    color-mix(in srgb, var(--info-accent) 20%, transparent) 3px 4px
+  );
+}
+
+.game-about .circuit-tearing .about-circuit-art > svg {
+  animation: info-displace 240ms steps(2, end);
+}
+
+.game-about .circuit-tearing .about-circuit-tear {
+  animation: info-tear 240ms steps(2, end);
+}
+
+.game-about .circuit-tearing .about-circuit-current,
+.game-about .game-tile:focus-within .about-circuit-current {
+  animation: info-current 760ms ease-out;
+}
+
+@keyframes info-displace {
+  0%,
+  100% {
+    transform: none;
+  }
+  25% {
+    transform: translateX(var(--circuit-shift, 7px));
+  }
+  65% {
+    transform: translateX(calc(var(--circuit-shift, 7px) * -0.5));
+  }
+}
+
+@keyframes info-tear {
+  0%,
+  100% {
+    opacity: 0;
+    transform: none;
+  }
+  25% {
+    opacity: 0.4;
+    transform: translateX(var(--circuit-shift, 7px));
+  }
+  65% {
+    opacity: 0.15;
+    transform: translateX(calc(var(--circuit-shift, 7px) * -1));
+  }
+}
+
+@keyframes info-current {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+  }
+  25% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    stroke-dashoffset: -142;
+  }
+}
+
+/* Statistics */
+
+.game-about .game-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  margin: 0 0 var(--info-gap);
+  padding: 0.5rem;
+}
+
+.game-about .game-stats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+  padding: clamp(1rem, 1.8vw, 2rem);
+}
+
+.game-about .game-stats > div + div {
+  border-inline-start: 1px solid var(--info-border);
+}
+
+.game-about .game-stats dt {
+  color: var(--info-muted);
+  font: 600 0.75rem/1.5 var(--info-font);
+  letter-spacing: 0.075em;
+}
+
+.game-about .game-stats dd {
+  color: var(--info-title);
+  font-family: var(--info-heading);
+  font-size: clamp(1rem, 0.8rem + 0.45vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+
+.game-about .health-segments {
+  display: block;
+  margin-top: 0.5rem;
+  color: var(--info-accent);
+  font: 0.875rem/1 var(--info-font);
+  letter-spacing: 0.08em;
+}
+
+/* Information */
+
+.game-about .game-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--info-gap);
+  align-items: stretch;
+}
+
+.game-about .game-tile {
+  padding: var(--info-padding);
+}
+
+.game-about h2,
+.game-about h3 {
+  color: var(--info-accent);
+  font-family: var(--info-heading);
+  font-size: clamp(0.875rem, 0.8rem + 0.15vw, 1.125rem);
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0.025em;
+  text-shadow: none;
+}
+
+.game-about .game-tile > h2 {
+  margin-bottom: 1rem;
+}
+
+.game-about p,
+.game-about dd {
+  color: var(--info-text);
+  -webkit-text-fill-color: currentColor;
+  opacity: 1;
+  text-shadow: none;
+}
+
+.game-about .game-tile p + p {
+  margin-top: 0.75rem;
+}
+
+.game-about .game-quest > p {
+  font-size: clamp(1.125rem, 1rem + 0.3vw, 1.5rem);
+  line-height: 1.55;
+}
+
+.game-about .game-save {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--info-border);
+}
+
+.game-about .game-save h3 {
+  margin-bottom: 0.5rem;
+}
+
+.game-about a:not(.game-button):not(.quest-button):not(.game-back) {
+  color: var(--info-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+}
+
+.game-about .game-tile > a {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  padding-block: 0.4rem;
+}
+
+.game-about .game-tile > a + a {
+  margin-top: 0.5rem;
+}
+
+.game-about .game-inventory {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--info-gap);
+  margin-block: var(--info-gap);
+}
+
+.game-about .game-inventory > div {
+  padding: var(--info-padding);
+}
+
+.game-about .game-inventory dt {
+  margin-bottom: 0.625rem;
+  color: var(--info-accent);
+  font: 400 0.875rem/1.6 var(--info-heading);
+}
+
+/* Buttons */
+
+.game-about .game-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.game-about .game-actions > * {
+  flex: 1 1 10rem;
+  min-width: 0;
+}
+
+.game-about .game-button,
+.game-about .quest-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.875rem;
+  min-height: 3.25rem;
+  max-width: 100%;
+  padding: 0.875rem 1.125rem;
+
+  border: 1px solid var(--info-border);
+  border-radius: 0.625rem;
+  background: var(--info-surface);
+  color: var(--info-button-text);
+
+  font: 600 0.9375rem/1.5 var(--info-font);
+  letter-spacing: normal;
+  text-align: center;
+  text-decoration: none;
+  white-space: normal;
+  text-shadow: none;
+
+  opacity: 1;
+  transform: none;
+  box-shadow: none;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: border-color 180ms ease;
+}
+
+.game-about .quest-button::before,
+.game-about .quest-button::after,
+.game-about .quest-button__edge {
+  display: none;
+}
+
+.game-about .quest-button__label {
+  min-width: 0;
+}
+
+.game-about .quest-button__icon {
+  flex: 0 0 auto;
+  color: var(--info-button);
+}
+
+.game-about .game-button--primary,
+.game-about .quest-button--primary {
+  border-color: var(--info-button);
+  box-shadow: inset 3px 0 0 var(--info-button);
+}
+
+.game-about :is(.game-button, .quest-button):disabled {
+  border-style: dashed;
+  color: var(--info-muted);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* Native dialog: matches Panel.tsx */
+
+.game-about dialog.utility-panel-shell {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: max(1rem, env(safe-area-inset-top))
+    max(1rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom))
+    max(1rem, env(safe-area-inset-left));
+  border: 0;
+  background: transparent;
+  color: var(--info-text);
+  overflow: hidden;
+  transform: none;
+}
+
+.game-about dialog.utility-panel-shell:not([open]) {
+  display: none;
+}
+
+.game-about dialog.utility-panel-shell[open] {
+  display: grid;
+  place-items: center;
+}
+
+.game-about dialog.utility-panel-shell::backdrop {
+  background: rgb(0 0 0 / 0.8);
+  backdrop-filter: none;
+}
+
+.game-about .utility-panel-surface {
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 44rem);
+  min-height: 0;
+  max-height: 100%;
+  overflow: hidden;
+
+  border: 1px solid var(--info-border);
+  border-radius: 0.875rem;
+  background: var(--info-surface);
+  color: var(--info-text);
+  font: 400 1rem/1.75 var(--info-font);
+  box-shadow: 0 1.5rem 5rem rgb(0 0 0 / 0.6);
+}
+
+.game-about .panel-header {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--info-border);
+}
+
+.game-about .panel-header h2 {
+  min-width: 0;
+  font-size: 0.9375rem;
+}
+
+.game-about .panel-header button {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0;
+  border: 1px solid var(--info-border);
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--info-accent);
+  font: 1.5rem/1 var(--info-font);
+  cursor: pointer;
+}
+
+.game-about .panel-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: clamp(1.25rem, 2vw, 2rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+.game-about .panel-body h3 {
+  margin-block: 1.5rem 0.75rem;
+}
+
+.game-about .panel-body h3:first-child {
+  margin-top: 0;
+}
+
+.game-about .panel-body p + p {
+  margin-top: 1rem;
+}
+
+.game-about .panel-body section + section {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--info-border);
+}
+
+.game-about .panel-body :is(.game-button, .quest-button) {
+  display: flex;
+  width: 100%;
+  margin-block: 0.75rem;
+}
+
+.game-about .panel-body details {
+  border-bottom: 1px solid var(--info-border);
+}
+
+.game-about .panel-body summary {
+  min-height: 3rem;
+  padding-block: 1rem;
+  color: var(--info-accent);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.game-about .panel-body details > p {
+  padding-bottom: 1.25rem;
+}
+
+.game-about .game-qr-placeholder {
+  display: grid;
+  place-items: center;
+  gap: 1rem;
+  min-height: 10rem;
+  margin-block: 1rem;
+  padding: 1.5rem;
+  border: 1px dashed var(--info-border);
+  border-radius: 0.75rem;
+  text-align: center;
+}
+
+.game-about [role="alert"] {
+  margin-block: 1rem;
+  padding: 1rem;
+  border: 2px solid var(--info-accent);
+  border-radius: 0.625rem;
+  background: var(--info-surface);
+}
+
+.game-about :where(a, button, summary, input, select):focus-visible {
+  outline: 3px solid var(--info-accent);
+  outline-offset: 4px;
+}
+
+.game-about #invitation-title:focus {
+  outline: none;
+}
+
+@media (hover: hover) {
+  .game-about .game-tile:hover,
+  .game-about .game-button:hover:not(:disabled),
+  .game-about .quest-button:hover:not(:disabled) {
+    border-color: var(--info-accent);
+  }
+
+  .game-about .game-tile:hover .about-circuit-current {
+    animation: info-current 760ms ease-out;
+  }
+}
+
+/* Responsive layout */
+
+@media (max-width: 64rem) {
+  .game-about .game-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .game-about .game-quest {
+    grid-column: 1 / -1;
+  }
+
+  .game-about .game-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .game-about .game-stats > div:nth-child(3) {
+    border-inline-start: 0;
+  }
+
+  .game-about .game-stats > div:nth-child(n + 3) {
+    border-top: 1px solid var(--info-border);
+  }
+}
+
+@media (max-width: 38rem) {
+  .game-about .game-grid,
+  .game-about .game-inventory {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .game-about .game-quest {
+    grid-column: auto;
+  }
+
+  .game-about .game-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .game-about .game-actions > :first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 23rem) {
+  .game-about .game-actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Accessibility */
+
+.experience.is-event.high-contrast .game-about {
+  --info-accent: #fff;
+  --info-text: #fff;
+  --info-muted: #eee;
+  --info-title: #fff;
+  --info-surface: #080808;
+  --info-border: #fff;
+  --info-button: #fff;
+  --info-button-text: #fff;
+}
+
+.high-contrast .game-about .about-circuit-art {
+  display: none;
+}
+
+.reduced-motion .game-about .about-circuit-art * {
+  animation: none;
+}
+
+.reduced-motion
+  .game-about
+  :is(
+    .game-tile,
+    .game-stats,
+    .game-inventory > div,
+    .game-button,
+    .quest-button
+  ) {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-about .about-circuit-art * {
+    animation: none;
+  }
+
+  .game-about
+    :is(
+      .game-tile,
+      .game-stats,
+      .game-inventory > div,
+      .game-button,
+      .quest-button
+    ) {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .game-about .about-circuit-art {
+    display: none;
+  }
+
+  .experience.is-event .game-about {
+    --info-text: CanvasText;
+    --info-title: CanvasText;
+    --info-muted: CanvasText;
+    --info-accent: LinkText;
+    --info-surface: Canvas;
+    --info-border: CanvasText;
+    --info-button: ButtonText;
+    --info-button-text: ButtonText;
+    background: Canvas;
+  }
+}
