@@ -5,7 +5,6 @@
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
   font-family: "Invite Pulse";
   src: url("/fonts/Pulse bold.otf") format("opentype");
@@ -13,7 +12,6 @@
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
   font-family: "Invite F-Zero";
   src: url("/fonts/F-ZeroSNES.otf") format("opentype");
@@ -22,68 +20,75 @@
   font-display: swap;
 }
 
-/* Shared visual language */
-
+/* Palette values are supplied inline by LandingPage from palette.ts. */
 .experience.experience {
   --ui-font: "Invite Pulse", "Segoe UI", Arial, sans-serif;
-  --ui-accent: #62f5d5;
-  --ui-cyan: #96dfff;
-  --ui-violet: #c7b1ff;
-  --ui-amber: #ffdb9b;
-  --ui-text: #eefaf6;
-  --ui-muted: #b4cbc4;
-  --ui-surface: #071611;
-  --ui-border: #345e52;
-
+  --ui-accent: var(--accent);
+  --ui-cyan: var(--cyan);
+  --ui-violet: var(--violet);
+  --ui-amber: var(--amber);
+  --ui-text: var(--text);
+  --ui-muted: var(--muted);
+  --ui-surface: var(--surface);
+  --ui-border: var(--line);
   --ui-body: clamp(1rem, 0.88rem + 0.3vw, 1.6rem);
   --ui-label: clamp(0.875rem, 0.8rem + 0.2vw, 1.3rem);
   --ui-heading: clamp(1.125rem, 0.95rem + 0.45vw, 2rem);
   --ui-value: clamp(1.25rem, 1rem + 0.5vw, 2.2rem);
   --ui-gap: clamp(0.875rem, 0.5rem + 1vw, 2.5rem);
   --ui-padding: clamp(1rem, 0.6rem + 1.2vw, 3rem);
-  --ui-radius: clamp(0.75rem, 0.5rem + 0.4vw, 1.5rem);
+  --ui-radius: clamp(0.65rem, 0.5rem + 0.4vw, 1.5rem);
   --ui-width: 180rem;
-
-  color: var(--ui-text);
-  font-family: var(--ui-font);
-  font-size: var(--ui-body);
-  font-synthesis: none;
-  line-height: 1.55;
+  --ui-highlight: color-mix(in srgb, var(--rim) 14%, transparent);
+  --ui-shadow: color-mix(in srgb, var(--background) 80%, transparent);
+  --ui-raised: color-mix(in srgb, var(--surface) 90%, var(--accent));
+  --ui-hover: color-mix(in srgb, var(--surface) 80%, var(--accent));
+  color: var(--text);
+  font: 400 var(--ui-body)/1.55 var(--ui-font);
 }
-
 .experience.experience *,
 .experience.experience *::before,
 .experience.experience *::after {
   box-sizing: border-box;
 }
-
-.experience.experience :is(
-  p, h2, h3, h4, dt, dd, label, summary,
-  button, input, select, textarea, a, small,
-  .game-version, .panel-body, .panel-header
-) {
+.experience.experience
+  :is(
+    p,
+    h2,
+    h3,
+    h4,
+    dt,
+    dd,
+    label,
+    summary,
+    button,
+    input,
+    select,
+    textarea,
+    a,
+    small,
+    .game-version,
+    .panel-body,
+    .panel-header
+  ) {
   font-family: var(--ui-font);
   font-synthesis: none;
   text-shadow: none;
   -webkit-text-fill-color: currentColor;
 }
-
 .experience.experience :is(p, dd, a, label, summary) {
   overflow-wrap: anywhere;
 }
-
-.experience.experience :is(
-  .language-glyph,
-  .motion-symbol,
-  .health-segments,
-  .icon-button,
-  .game-back
-) {
+.experience.experience
+  :is(
+    .language-glyph,
+    .motion-symbol,
+    .health-segments,
+    .icon-button,
+    .game-back
+  ) {
   font-family: "Segoe UI Symbol", system-ui, sans-serif;
 }
-
-/* Shared utility navigation */
-
 .experience.experience .experience-header {
   position: relative;
   z-index: 3;
@@ -94,59 +99,42 @@
   max-width: var(--ui-width);
   margin-inline: auto;
 }
-
 .experience.experience .utility-nav {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: flex-end;
-  flex-wrap: wrap;
   gap: 0.5rem;
   max-width: 100%;
 }
-
-.experience.experience .utility-nav .text-button {
-  justify-content: center;
-  padding: 0.65em 0.95em;
-  font-size: var(--ui-label);
-}
-
-.experience.experience .utility-nav .text-button::after {
-  content: none;
-}
-
-/* One button system */
-
-.experience.experience :is(
-  .text-button,
-  .pill-button,
-  .game-button,
-  .game-back,
-  .game-fx-toggle,
-  .motion-toggle,
-  .language-option,
-  .icon-button
-) {
-  --control-accent: var(--ui-accent);
-
+.experience.experience
+  :is(
+    .text-button,
+    .pill-button,
+    .game-button,
+    .game-back,
+    .game-fx-toggle,
+    .motion-toggle,
+    .language-option,
+    .icon-button
+  ) {
+  --control-accent: var(--accent);
   position: relative;
+  isolation: isolate;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.8em;
-
   min-width: 0;
   min-height: 2.75rem;
   max-width: 100%;
   padding: 0.85em 1.1em;
-
-  border: 1px solid var(--ui-border);
+  border: 1px solid color-mix(in srgb, var(--control-accent) 45%, var(--line));
   border-radius: var(--ui-radius);
-
-  color: var(--ui-text);
+  color: var(--text);
   background:
-    linear-gradient(135deg, rgb(98 245 213 / 0.07), transparent 65%),
-    #0a211a;
-
+    linear-gradient(115deg, var(--ui-highlight), transparent 45%),
+    var(--ui-raised);
   font-size: var(--ui-body);
   font-weight: 700;
   line-height: 1.35;
@@ -154,71 +142,78 @@
   text-align: start;
   text-decoration: none;
   white-space: normal;
-
   box-shadow:
-    inset 0 1px 0 rgb(224 255 246 / 0.1),
-    0 3px 0 rgb(0 0 0 / 0.25);
-
+    inset 0 1px 0 var(--ui-highlight),
+    0 4px 10px var(--ui-shadow);
   cursor: pointer;
   touch-action: manipulation;
-
   transition:
     border-color 180ms ease,
-    background-color 180ms ease,
     box-shadow 180ms ease,
     color 180ms ease,
-    transform 180ms ease;
+    transform 140ms ease,
+    background-color 180ms ease;
 }
-
-.experience.experience :is(.game-button, .text-button, .pill-button)
+.experience.experience .utility-nav .text-button {
+  justify-content: center;
+  padding: 0.65em 0.95em;
+  font-size: var(--ui-label);
+}
+.experience.experience .utility-nav .text-button::after {
+  content: none;
+}
+.experience.experience
+  :is(.game-button, .pill-button, .language-option)::before {
+  content: "";
+  position: absolute;
+  inset: 0 15% auto;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--control-accent),
+    transparent
+  );
+  opacity: 0.7;
+  pointer-events: none;
+}
+.experience.experience
+  :is(
+    .game-button--primary,
+    .pill-button,
+    .language-option[aria-pressed="true"]
+  ) {
+  color: var(--buttonText);
+  border-color: var(--button);
+  background:
+    linear-gradient(
+      120deg,
+      color-mix(in srgb, var(--rim) 20%, transparent),
+      transparent 55%
+    ),
+    var(--button);
+  box-shadow:
+    inset 0 1px 0 var(--ui-highlight),
+    0 5px 22px color-mix(in srgb, var(--glow) 12%, transparent);
+}
+.experience.experience
+  :is(.game-button, .pill-button, .text-button)
   > span[aria-hidden="true"] {
   flex-shrink: 0;
   color: var(--control-accent);
   font-family: system-ui, sans-serif;
-  transition: transform 180ms ease;
+  transition: transform 160ms ease;
 }
-
-.experience.experience :is(
-  .game-button--primary,
-  .pill-button,
-  .language-option[aria-pressed="true"]
-) {
-  border-color: var(--ui-accent);
-  color: #03251c;
-  background: linear-gradient(135deg, #a0ffe6, var(--ui-accent));
-  box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.4),
-    0 5px 20px rgb(98 245 213 / 0.1);
-}
-
-.experience.experience :is(.game-button--primary, .pill-button)
+.experience.experience
+  :is(.game-button--primary, .pill-button)
   > span[aria-hidden="true"] {
   color: inherit;
 }
-
 .experience.experience .motion-toggle[aria-pressed="true"] {
-  border-color: var(--ui-accent);
-  color: var(--ui-accent);
-  background: #12392c;
+  color: var(--accent);
+  border-color: var(--accent);
+  box-shadow: inset 3px 0 0 var(--accent);
 }
-
-.experience.experience :is(
-  .game-button,
-  .text-button,
-  .pill-button,
-  .motion-toggle,
-  .language-option,
-  .game-fx-toggle
-):disabled {
-  opacity: 0.65;
-  color: var(--ui-muted);
-  background: #15251f;
-  border-color: #4b6359;
-  box-shadow: none;
-  transform: none;
-  cursor: default;
-}
-
 .experience.experience :is(.game-back, .icon-button) {
   display: grid;
   place-items: center;
@@ -226,21 +221,16 @@
   width: clamp(2.75rem, 2rem + 1vw, 4.5rem);
   height: clamp(2.75rem, 2rem + 1vw, 4.5rem);
   padding: 0;
-  color: var(--ui-accent);
+  color: var(--accent);
   font-size: clamp(1.5rem, 1.2rem + 0.4vw, 2.25rem);
 }
-
-/* Information-page composition */
-
 .experience.experience.is-event {
-  padding:
-    max(1rem, env(safe-area-inset-top))
+  padding: max(1rem, env(safe-area-inset-top))
     max(clamp(1rem, 3vw, 7rem), env(safe-area-inset-right))
     max(1rem, env(safe-area-inset-bottom))
     max(clamp(1rem, 3vw, 7rem), env(safe-area-inset-left));
-  background: #000;
+  background: var(--background);
 }
-
 .experience.experience .game-about {
   --info-font: var(--ui-font);
   --info-label: var(--ui-font);
@@ -248,155 +238,88 @@
   --info-heading: var(--ui-heading);
   --info-gap: var(--ui-gap);
   --info-padding: var(--ui-padding);
-  --info-accent: var(--ui-accent);
-  --info-cyan: var(--ui-cyan);
-  --info-violet: var(--ui-violet);
-  --info-amber: var(--ui-amber);
-  --info-text: var(--ui-text);
-  --info-muted: var(--ui-muted);
-  --info-border: var(--ui-border);
-
   width: 100%;
   max-width: var(--ui-width);
   margin-inline: auto;
   padding-block: var(--ui-gap);
-  font-family: var(--ui-font);
-  font-size: var(--ui-body);
 }
-
-.experience.experience .game-about .game-topbar {
+.experience.experience .game-about :is(.game-topbar, .game-hero) {
   margin-bottom: var(--ui-gap);
 }
-
 .experience.experience .game-about .game-version {
+  color: var(--muted);
   font-size: var(--ui-label);
-  color: var(--ui-muted);
-  letter-spacing: 0.12em;
 }
-
-.experience.experience .game-about .game-hero {
-  margin-bottom: var(--ui-gap);
-}
-
 .experience.experience .game-about #invitation-title {
-  max-width: 25ch;
-  color: #f0fff9;
+  color: var(--title);
   font-family: "Invite F-Zero", var(--ui-font);
   font-size: clamp(1.75rem, 1rem + 2.7vw, 7.5rem);
-  font-weight: 400;
   line-height: 1.25;
-  letter-spacing: 0.015em;
   text-wrap: balance;
 }
-
 .experience.experience .game-about :is(h2, h3) {
   margin: 0 0 0.65em;
   font-size: var(--ui-heading);
   font-weight: 700;
   line-height: 1.35;
-  letter-spacing: 0.035em;
-  color: var(--tile-accent, var(--ui-accent));
 }
-
-.experience.experience .game-about :is(
-  .game-tile p,
-  .game-quest > p,
-  .game-save p
-) {
+.experience.experience
+  .game-about
+  :is(.game-tile p, .game-quest > p, .game-save p) {
   max-width: 62ch;
   margin: 0 0 0.8em;
   font-size: var(--ui-body);
   font-weight: 400;
   line-height: 1.55;
-  letter-spacing: normal;
   text-wrap: pretty;
 }
-
 .experience.experience .game-about p:last-child {
   margin-bottom: 0;
 }
-
-.experience.experience .game-about :is(
-  .game-stats dt,
-  .game-inventory dt
-) {
+.experience.experience .game-about :is(.game-stats dt, .game-inventory dt) {
   margin: 0 0 0.55em;
   font-size: var(--ui-label);
   font-weight: 700;
   line-height: 1.4;
-  letter-spacing: 0.055em;
 }
-
-.experience.experience .game-about :is(
-  .game-stats dd,
-  .game-inventory dd
-) {
+.experience.experience .game-about :is(.game-stats dd, .game-inventory dd) {
   margin: 0;
   font-size: var(--ui-value);
   font-weight: 700;
   line-height: 1.35;
   font-variant-numeric: tabular-nums;
 }
-
-.experience.experience .game-about .game-tile a {
-  color: var(--ui-cyan);
-  font-size: inherit;
-  line-height: inherit;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.22em;
+.experience.experience .game-about .game-stats > div:first-child dd {
+  color: var(--level);
 }
-
 .experience.experience .game-about .game-save {
   margin-top: var(--ui-gap);
   padding-top: var(--ui-gap);
-  border-color: var(--ui-border);
 }
-
-/* Holographic reading surfaces */
-
-.experience.experience .game-about :is(
-  .game-tile,
-  .game-stats,
-  .game-inventory > div
-) {
-  position: relative;
-  isolation: isolate;
-  min-width: 0;
-  overflow: hidden;
-
-  border: 1px solid
-    color-mix(in srgb, var(--tile-accent, var(--ui-accent)) 38%, #14271f);
+.experience.experience
+  .game-about
+  :is(.game-tile, .game-stats, .game-inventory > div) {
   border-radius: var(--ui-radius);
-
+  border-color: color-mix(in srgb, var(--tile-accent) 38%, var(--line));
   background:
     radial-gradient(
       ellipse at 100% 0,
-      rgb(98 245 213 / 0.08),
+      color-mix(in srgb, var(--tile-accent) 8%, transparent),
       transparent 65%
     ),
-    linear-gradient(145deg, #0b2019, #04100c);
-
+    var(--surface);
   box-shadow:
-    inset 0 1px 0 rgb(230 255 246 / 0.12),
-    inset 0 -1px 0 rgb(0 0 0 / 0.5),
-    0 0.5rem 2rem rgb(0 0 0 / 0.2);
-
-  transition: border-color 200ms ease, box-shadow 200ms ease;
+    inset 0 1px 0 var(--ui-highlight),
+    0 0.5rem 2rem var(--ui-shadow);
 }
-
-.experience.experience .game-about :is(
-  .game-tile,
-  .game-inventory > div,
-  .game-stats > div
-) {
+.experience.experience
+  .game-about
+  :is(.game-tile, .game-inventory > div, .game-stats > div) {
   padding: var(--ui-padding);
 }
-
-.experience.experience .game-about :is(
-  .game-tile,
-  .game-stats,
-  .game-inventory > div
-)::before {
+.experience.experience
+  .game-about
+  :is(.game-tile, .game-stats, .game-inventory > div)::before {
   content: "";
   position: absolute;
   z-index: 1;
@@ -406,81 +329,50 @@
   background: linear-gradient(
     90deg,
     transparent,
-    var(--tile-accent, var(--ui-accent)),
+    var(--tile-accent),
     transparent
   );
   opacity: 0.8;
   pointer-events: none;
   animation: ui-edge-travel 7s linear infinite;
 }
-
+@keyframes ui-edge-travel {
+  to {
+    transform: translateX(350%);
+  }
+}
 .experience.experience .game-about .game-grid > :nth-child(2)::before {
   animation-delay: -2s;
 }
-
 .experience.experience .game-about .game-grid > :nth-child(3)::before {
   animation-delay: -4s;
 }
-
-.experience.experience .game-about .game-inventory > div::before {
-  animation-duration: 9s;
-}
-
-@keyframes ui-edge-travel {
-  to { transform: translateX(350%); }
-}
-
-.experience.experience .game-about .about-circuit-art > svg {
-  opacity: 0.9;
-}
-
-.experience.experience .game-about .about-circuit-current {
-  stroke-width: 2.5;
-}
-
-.experience.experience .game-about .circuit-tearing {
-  border-color: var(--tile-accent, var(--ui-accent));
-  box-shadow:
-    inset 0 1px 0 rgb(230 255 246 / 0.2),
-    0 0 18px rgb(98 245 213 / 0.12);
-}
-
-/* Actions form one coordinated row */
-
 .experience.experience .game-about .game-actions {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: var(--ui-gap);
   margin-top: var(--ui-gap);
 }
-
 .experience.experience .game-actions .game-button {
   width: 100%;
   height: auto;
-  min-height: 3.25rem;
-  font-size: var(--ui-body);
+  min-height: clamp(3.25rem, 2.5rem + 1vw, 5rem);
 }
-
 .experience.experience .game-actions > :nth-child(3) {
-  --control-accent: var(--ui-violet);
-  border-color: #8776af;
+  --control-accent: var(--violet);
+  border-color: var(--violet);
 }
-
 .experience.experience .game-actions > :nth-child(4) {
-  --control-accent: var(--ui-amber);
-  border-color: #96804d;
+  --control-accent: var(--amber);
+  border-color: var(--amber);
 }
-
 .experience.experience .game-actions > :nth-child(5) {
-  --control-accent: var(--ui-cyan);
-  border-color: #598798;
+  --control-accent: var(--cyan);
+  border-color: var(--cyan);
 }
-
-/* Shared dialog shell */
 
 .experience.experience dialog.utility-panel.utility-panel-shell {
-  --panel-accent: var(--ui-accent);
-
+  --panel-accent: var(--accent);
   position: fixed;
   inset: 0;
   width: 100%;
@@ -488,67 +380,71 @@
   height: 100dvh;
   max-height: none;
   margin: 0;
-  padding:
-    max(1rem, env(safe-area-inset-top))
-    max(1rem, env(safe-area-inset-right))
-    max(1rem, env(safe-area-inset-bottom))
+  padding: max(1rem, env(safe-area-inset-top))
+    max(1rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom))
     max(1rem, env(safe-area-inset-left));
   border: 0;
   border-radius: 0;
   background: transparent;
-  color: var(--ui-text);
+  color: var(--text);
   overflow: hidden;
 }
-
 .experience.experience dialog.utility-panel:not([open]) {
   display: none;
 }
-
 .experience.experience dialog.utility-panel[open] {
   display: grid;
   place-items: center;
 }
-
 .experience.experience dialog.utility-panel::backdrop {
-  background: rgb(0 7 5 / 0.8);
+  background: color-mix(in srgb, var(--background) 82%, transparent);
 }
-
 .experience.experience dialog.utility-panel[data-tone="violet"] {
-  --panel-accent: var(--ui-violet);
+  --panel-accent: var(--violet);
 }
-
 .experience.experience dialog.utility-panel[data-tone="amber"] {
-  --panel-accent: var(--ui-amber);
+  --panel-accent: var(--amber);
 }
-
 .experience.experience dialog.utility-panel[data-tone="cyan"] {
-  --panel-accent: var(--ui-cyan);
+  --panel-accent: var(--cyan);
 }
-
 .experience.experience dialog.utility-panel .utility-panel-surface {
   position: relative;
   isolation: isolate;
   display: flex;
   flex-direction: column;
-
   width: min(100%, clamp(32rem, 48vw, 76rem));
   min-width: 0;
   min-height: 0;
   max-height: 100%;
   overflow: hidden;
-
-  border: 1px solid
-    color-mix(in srgb, var(--panel-accent) 55%, #14271f);
+  border: 1px solid color-mix(in srgb, var(--panel-accent) 60%, var(--line));
   border-radius: var(--ui-radius);
-  color: var(--ui-text);
+  color: var(--text);
   background:
-    radial-gradient(ellipse at 100% 0, rgb(98 245 213 / 0.07), transparent 60%),
-    #071611;
+    radial-gradient(
+      ellipse at 100% 0,
+      color-mix(in srgb, var(--panel-accent) 9%, transparent),
+      transparent 55%
+    ),
+    var(--surface);
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.14),
-    0 2rem 6rem rgb(0 0 0 / 0.65);
+    inset 0 1px 0 var(--ui-highlight),
+    0 2rem 6rem var(--ui-shadow);
 }
-
+.experience.experience dialog.utility-panel[open] .utility-panel-surface {
+  animation: ui-panel-arrive 220ms ease-out both;
+}
+@keyframes ui-panel-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
 .experience.experience dialog.utility-panel .utility-panel-surface::after {
   content: "";
   position: absolute;
@@ -557,109 +453,94 @@
   width: 40%;
   height: 2px;
   background: linear-gradient(
-    90deg, transparent, var(--panel-accent), transparent
+    90deg,
+    transparent,
+    var(--panel-accent),
+    transparent
   );
   pointer-events: none;
   animation: ui-edge-travel 5s linear infinite;
 }
-
-/* Avoid duplicate edge layers if the earlier Panel upgrade is installed. */
 .experience.experience .panel-energy {
   display: none;
 }
-
 .experience.experience dialog.utility-panel .panel-header {
-  position: relative;
   display: flex;
   flex: 0 0 auto;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   padding: var(--ui-padding);
-  border-bottom: 1px solid var(--ui-border);
-  background: rgb(98 245 213 / 0.035);
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--panel-accent) 3%, transparent);
 }
-
 .experience.experience dialog.utility-panel .panel-header h2 {
   margin: 0;
+  padding-inline-start: 0.75em;
+  border-inline-start: 3px solid var(--panel-accent);
   color: var(--panel-accent);
   font-size: var(--ui-heading);
   font-weight: 700;
   line-height: 1.35;
-  letter-spacing: 0.035em;
-  text-wrap: balance;
 }
-
 .experience.experience dialog.utility-panel .panel-body {
   min-width: 0;
   min-height: 0;
   padding: var(--ui-padding);
-  color: var(--ui-text);
+  color: var(--text);
   font-size: var(--ui-body);
   line-height: 1.6;
   overflow: auto;
   overscroll-behavior: contain;
   scrollbar-width: thin;
   scrollbar-gutter: stable;
-  scrollbar-color: var(--ui-border) #071611;
+  scrollbar-color: var(--line) var(--surface);
 }
-
 .experience.experience dialog.utility-panel .panel-body p {
   max-width: 65ch;
   margin: 0 0 1em;
   font-size: var(--ui-body);
   line-height: 1.6;
 }
-
 .experience.experience dialog.utility-panel .panel-body p:last-child {
   margin-bottom: 0;
 }
-
 .experience.experience dialog.utility-panel .panel-body h3 {
   margin: 0 0 0.7em;
   color: var(--panel-accent);
   font-size: var(--ui-heading);
-  line-height: 1.35;
 }
-
 .experience.experience dialog.utility-panel .panel-body > section + section {
   margin-top: var(--ui-gap);
   padding-top: var(--ui-gap);
-  border-top: 1px solid var(--ui-border);
+  border-top: 1px solid var(--line);
 }
-
-.experience.experience dialog.utility-panel .panel-body
+.experience.experience
+  dialog.utility-panel
+  .panel-body
   a:not(.game-button, .text-button, .pill-button) {
-  color: var(--ui-cyan);
-  text-decoration: underline;
+  color: var(--cyan);
   text-underline-offset: 0.25em;
 }
-
 .experience.experience dialog.utility-panel .icon-button {
   color: var(--panel-accent);
 }
-
-/* Calendar, settings, and FAQ */
-
 .experience.experience :is(.calendar-options, .language-options) {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
   gap: 0.8rem;
   margin-bottom: var(--ui-gap);
 }
-
-.experience.experience :is(.calendar-options, .language-options)
+.experience.experience
+  :is(.calendar-options, .language-options)
   > :is(a, button) {
   width: 100%;
 }
-
 .experience.experience .color-options {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.65rem;
   margin-block: var(--ui-gap);
 }
-
 .experience.experience :is(.color-option, .check-control) {
   display: flex;
   align-items: center;
@@ -667,214 +548,228 @@
   min-width: 0;
   min-height: 3.25rem;
   padding: 0.75rem 1rem;
-  border: 1px solid var(--ui-border);
+  border: 1px solid var(--line);
   border-radius: 0.65rem;
-  color: var(--ui-text);
-  background: #0a211a;
+  color: var(--text);
+  background: var(--ui-raised);
   font-size: var(--ui-body);
-  line-height: 1.4;
 }
-
 .experience.experience .color-option {
   justify-content: space-between;
 }
-
 .experience.experience .check-control {
   justify-content: flex-start;
   margin-block: 0.75rem;
 }
-
 .experience.experience input[type="checkbox"] {
   flex-shrink: 0;
   width: 1.25rem;
   height: 1.25rem;
-  accent-color: var(--ui-accent);
+  accent-color: var(--accent);
 }
-
 .experience.experience input[type="color"] {
   flex-shrink: 0;
   width: 2.75rem;
   height: 2.75rem;
   padding: 0.25rem;
-  border: 1px solid var(--ui-border);
+  border: 1px solid var(--line);
   border-radius: 0.5rem;
-  background: #061510;
+  background: var(--surface);
   cursor: pointer;
 }
-
 .experience.experience .panel-body details {
   margin-block: 0.75rem;
   padding: 0.5rem 1rem;
-  border: 1px solid var(--ui-border);
+  border: 1px solid var(--line);
   border-radius: 0.65rem;
-  background: #0a211a;
+  background: var(--ui-raised);
 }
-
+.experience.experience .panel-body details[open] {
+  border-color: var(--panel-accent);
+}
 .experience.experience .panel-body summary {
   min-height: 2.75rem;
   padding-block: 0.6rem;
-  color: var(--panel-accent, var(--ui-accent));
+  color: var(--panel-accent);
   font-size: var(--ui-body);
   font-weight: 700;
   cursor: pointer;
 }
-
 .experience.experience .panel-body details[open] > summary {
   margin-bottom: 0.65rem;
 }
-
 .experience.experience .panel-body .muted {
-  color: var(--ui-muted);
+  color: var(--muted);
   font-size: var(--ui-label);
 }
-
-/* Footer and design note */
-
 .experience.experience :is(.experience-footer, .event-update) {
   width: 100%;
   max-width: var(--ui-width);
   margin-inline: auto;
 }
-
 .experience.experience .experience-footer {
   padding-block: 1rem;
-  border-top: 1px solid var(--ui-border);
+  border-top: 1px solid var(--line);
 }
-
 .experience.experience .event-update {
   padding-block: 0.5rem;
-  color: var(--ui-muted);
+  color: var(--muted);
   font-size: var(--ui-label);
 }
-
 .experience.experience :is(.design-note, .game-design-note) {
-  margin-block: 0 var(--ui-gap);
+  margin: 0 0 var(--ui-gap);
   padding: 0.85rem 1rem;
-  border-left: 3px solid var(--ui-amber);
+  border-left: 3px solid var(--amber);
   border-radius: 0.4rem;
-  color: #ebdfc6;
-  background: #16170e;
+  color: var(--text);
+  background: color-mix(in srgb, var(--surface) 94%, var(--amber));
   font-size: var(--ui-label);
   line-height: 1.55;
 }
-
-/* Interaction */
-
-.experience.experience :is(button, a, input, select, textarea, summary):focus-visible {
-  outline: 3px solid #eafff7;
+.experience.experience
+  :is(button, a, input, select, textarea, summary):focus-visible {
+  outline: 3px solid var(--rim);
   outline-offset: 4px;
 }
-
 @media (hover: hover) and (pointer: fine) {
-  .experience.experience :is(
-    .text-button, .game-button, .pill-button,
-    .language-option, .motion-toggle,
-    .game-back, .icon-button, .game-fx-toggle
-  ):hover:not(:disabled) {
-    border-color: var(--control-accent, var(--ui-accent));
-    color: #fff;
-    background-color: #173e30;
+  .experience.experience
+    :is(
+      .text-button,
+      .pill-button,
+      .game-button,
+      .game-back,
+      .game-fx-toggle,
+      .motion-toggle,
+      .language-option,
+      .icon-button
+    ):hover:not(:disabled) {
+    border-color: var(--control-accent);
+    color: var(--text);
+    background: var(--ui-hover);
     box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.15),
-      0 0 20px rgb(98 245 213 / 0.08);
+      inset 0 1px 0 var(--ui-highlight),
+      0 6px 24px var(--ui-shadow);
   }
-
-  .experience.experience :is(.game-button--primary, .pill-button):hover {
-    color: #03251c;
-    background: #b7ffe9;
+  .experience.experience
+    :is(
+      .game-button--primary,
+      .pill-button,
+      .language-option[aria-pressed="true"]
+    ):hover:not(:disabled) {
+    color: var(--buttonText);
+    background: color-mix(in srgb, var(--button) 85%, var(--rim));
   }
-
-  .experience.experience .game-button:hover:not(:disabled)
+  .experience.experience
+    .game-button:hover:not(:disabled)
     > span[aria-hidden="true"] {
     transform: translateX(3px);
   }
-
-  .experience.experience .game-about .game-tile:hover {
-    border-color: var(--tile-accent, var(--ui-accent));
-  }
 }
-
-/* Responsive composition */
-
+.experience.experience
+  :is(
+    .text-button,
+    .pill-button,
+    .game-button,
+    .game-back,
+    .motion-toggle,
+    .language-option,
+    .icon-button
+  ):active:not(:disabled) {
+  transform: translateY(1px);
+}
+.experience.experience
+  :is(
+    .text-button,
+    .pill-button,
+    .game-button,
+    .game-back,
+    .motion-toggle,
+    .language-option,
+    .icon-button
+  ):disabled {
+  color: var(--muted);
+  background: var(--surface);
+  border-color: var(--line);
+  box-shadow: none;
+  opacity: 0.65;
+  transform: none;
+  cursor: default;
+}
 @media (max-width: 80rem) {
   .experience.experience .game-about .game-actions {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
-
 @media (max-width: 48rem) {
   .experience.experience .game-about .game-actions {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
   .experience.experience :is(.experience-header, .utility-nav) {
     justify-content: center;
   }
 }
-
 @media (max-width: 30rem) {
   .experience.experience .game-about .game-actions,
   .experience.experience .color-options {
     grid-template-columns: minmax(0, 1fr);
   }
-
   .experience.experience .utility-nav {
     gap: 0.35rem;
   }
-
   .experience.experience .utility-nav .text-button {
     padding-inline: 0.6em;
   }
 }
-
-/* Motion and contrast preferences */
-
 .experience.experience.reduced-motion *,
 .experience.experience.reduced-motion *::before,
 .experience.experience.reduced-motion *::after {
   animation: none !important;
   transition: none !important;
 }
-
-.experience.experience .game-about[data-fx-paused="true"] *::before {
-  animation-play-state: paused;
-}
-
-.experience.experience.high-contrast {
-  --ui-accent: #fff;
-  --ui-cyan: #fff;
-  --ui-violet: #fff;
-  --ui-amber: #fff;
-  --ui-text: #fff;
-  --ui-muted: #eee;
-  --ui-border: #fff;
-}
-
-.experience.experience.high-contrast :is(
-  .game-tile, .game-stats, .game-inventory > div,
-  .utility-panel-surface, .panel-header,
-  .color-option, .check-control, details
-) {
-  color: #fff;
-  background: #000;
-  border-color: #fff;
+.experience.experience.high-contrast
+  :is(
+    .game-tile,
+    .game-stats,
+    .game-inventory > div,
+    .utility-panel-surface,
+    .panel-header,
+    .color-option,
+    .check-control,
+    details
+  ) {
+  color: var(--text);
+  background: var(--surface);
+  border-color: var(--line);
   box-shadow: none;
 }
-
-.experience.experience.high-contrast :is(
-  .game-button--primary, .pill-button,
-  .language-option[aria-pressed="true"]
-) {
-  color: #000;
-  background: #fff;
+.experience.experience.high-contrast
+  :is(
+    .game-button,
+    .text-button,
+    .pill-button,
+    .language-option,
+    .motion-toggle,
+    .game-back,
+    .icon-button
+  ):not(:disabled) {
+  color: var(--text);
+  background: var(--surface);
+  border-color: var(--line);
+  box-shadow: none;
 }
-
-.experience.experience.high-contrast .game-about
-  :is(.game-tile, .game-stats, .game-inventory > div)::before,
-.experience.experience.high-contrast .utility-panel-surface::after {
-  display: none;
+.experience.experience.high-contrast
+  :is(
+    .game-button--primary,
+    .pill-button,
+    .language-option[aria-pressed="true"]
+  ):not(:disabled) {
+  color: var(--buttonText);
+  background: var(--button);
 }
-
+.experience.experience.high-contrast *::before,
+.experience.experience.high-contrast *::after {
+  animation: none !important;
+}
 @media (prefers-reduced-motion: reduce) {
   .experience.experience *,
   .experience.experience *::before,
@@ -883,32 +778,40 @@
     transition: none !important;
   }
 }
-
 @media (forced-colors: active) {
-  .experience.experience :is(
-    .game-tile, .game-stats, .game-inventory > div,
-    .utility-panel-surface, .panel-header,
-    .color-option, .check-control, details
-  ) {
-    color: CanvasText;
-    background: Canvas;
-    border-color: CanvasText;
-    box-shadow: none;
+  .experience.experience {
+    --background: Canvas;
+    --surface: Canvas;
+    --text: CanvasText;
+    --muted: CanvasText;
+    --title: CanvasText;
+    --accent: LinkText;
+    --cyan: LinkText;
+    --violet: LinkText;
+    --amber: LinkText;
+    --line: CanvasText;
+    --rim: Highlight;
+    --button: ButtonFace;
+    --buttonText: ButtonText;
   }
-
-  .experience.experience :is(
-    .game-button, .text-button, .pill-button,
-    .motion-toggle, .game-back, .icon-button,
-    .language-option, .game-fx-toggle
-  ) {
+  .experience.experience
+    :is(
+      .game-button,
+      .text-button,
+      .pill-button,
+      .language-option,
+      .motion-toggle,
+      .game-back,
+      .icon-button
+    ) {
     color: ButtonText;
     background: ButtonFace;
     border-color: ButtonText;
     box-shadow: none;
   }
-
   .experience.experience .utility-panel-surface::after,
-  .experience.experience .game-about
+  .experience.experience
+    .game-about
     :is(.game-tile, .game-stats, .game-inventory > div)::before {
     display: none;
   }

@@ -40,8 +40,7 @@
 .experience.is-landing .utility-nav .text-button {
   font-size: clamp(1rem, 0.8rem + 0.4vw, 1.75rem);
   min-height: 2.75rem;
-  padding: clamp(0.65rem, 0.6vw, 1.25rem)
-    clamp(0.8rem, 1vw, 2rem);
+  padding: clamp(0.65rem, 0.6vw, 1.25rem) clamp(0.8rem, 1vw, 2rem);
 }
 
 .experience.is-landing .lock-trigger {
@@ -62,7 +61,7 @@
   height: auto;
   max-height: none;
   overflow: visible;
-  background: #000;
+  background: var(--background);
   background-image: none;
 }
 
@@ -78,17 +77,17 @@
 }
 
 .experience .game-about {
-  --info-accent: #5ff5d3;
-  --info-cyan: #8cdeff;
-  --info-violet: #c5b5ff;
-  --info-amber: #ffda94;
-  --info-text: #effbf8;
-  --info-muted: #c1d6d1;
-  --info-title: #fff;
-  --info-surface: #071512;
-  --info-border: #386a5e;
+  --info-accent: var(--accent);
+  --info-cyan: var(--cyan);
+  --info-violet: var(--violet);
+  --info-amber: var(--amber);
+  --info-text: var(--text);
+  --info-muted: var(--muted);
+  --info-title: var(--title);
+  --info-surface: var(--surface);
+  --info-border: var(--line);
   --info-font: "About Pulse", "Segoe UI", Arial, sans-serif;
-  --info-label: "About Vector", "Segoe UI", sans-serif;
+  --info-label: "About Pulse", "Segoe UI", sans-serif;
   --info-gap: clamp(1rem, 1.6vw, 3rem);
   --info-padding: clamp(1.25rem, 2vw, 4rem);
   --info-body: clamp(1rem, 0.85rem + 0.35vw, 1.7rem);
@@ -104,7 +103,7 @@
   margin: 0 auto;
   padding: clamp(1rem, 2vw, 4rem) 0 clamp(3rem, 5vw, 8rem);
   color: var(--info-text);
-  background: #000;
+  background: var(--background);
   font-family: var(--info-font);
   font-size: var(--info-body);
   font-weight: 400;
@@ -149,7 +148,7 @@
 }
 
 .game-about :where(button, a, input, select, summary):focus-visible {
-  outline: 3px solid #fff;
+  outline: 3px solid var(--title);
   outline-offset: 5px;
 }
 
@@ -216,7 +215,7 @@
   border-radius: clamp(0.75rem, 0.7vw, 1.5rem);
   color: var(--info-text);
   background: var(--info-surface);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--rim) 8%, transparent);
   transform: none;
   animation: none;
 }
@@ -252,7 +251,8 @@
   pointer-events: none;
 }
 
-.game-about :where(.game-tile, .game-stats, .game-inventory > div)
+.game-about
+  :where(.game-tile, .game-stats, .game-inventory > div)
   > :not(.about-circuit-art) {
   position: relative;
   z-index: 2;
@@ -350,10 +350,10 @@
   min-height: 3rem;
   max-width: 100%;
   padding: 0.8em 1.2em;
-  border: 1px solid #4a9b88;
+  border: 1px solid var(--line);
   border-radius: 0.65rem;
   color: var(--info-text);
-  background: #09231d;
+  background: var(--surface);
   font-family: "About Pulse", "Segoe UI", sans-serif;
   font-size: clamp(1rem, 0.85rem + 0.35vw, 1.7rem);
   font-weight: 700;
@@ -361,7 +361,7 @@
   text-align: left;
   text-decoration: none;
   letter-spacing: 0.02em;
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.09);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--rim) 9%, transparent);
   cursor: pointer;
   touch-action: manipulation;
   transition:
@@ -376,7 +376,7 @@
 }
 
 .game-about .game-button--primary {
-  color: #031b15;
+  color: var(--buttonText);
   background: var(--info-accent);
   border-color: var(--info-accent);
   box-shadow: none;
@@ -387,15 +387,15 @@
 }
 
 .game-about .game-actions > :nth-child(3) {
-  border-color: #9986ce;
+  border-color: var(--violet);
 }
 
 .game-about .game-actions > :nth-child(4) {
-  border-color: #b99958;
+  border-color: var(--amber);
 }
 
 .game-about .game-actions > :nth-child(5) {
-  border-color: #679eb7;
+  border-color: var(--cyan);
 }
 
 .game-about .game-back {
@@ -421,19 +421,19 @@
 .game-about .game-fx-toggle {
   min-height: 2.75rem;
   color: var(--info-muted);
-  background: #071512;
+  background: var(--surface);
   font-size: clamp(0.875rem, 0.8rem + 0.2vw, 1.25rem);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .game-about :where(.game-button, .game-back, .game-fx-toggle):hover {
-    border-color: #caffef;
-    background: #153c31;
+    border-color: var(--rim);
+    background: var(--surface);
   }
 
   .game-about .game-button--primary:hover {
-    color: #031b15;
-    background: #adffe9;
+    color: var(--buttonText);
+    background: var(--button);
   }
 
   .game-about .game-tile:hover {
@@ -455,14 +455,14 @@
 .game-about .utility-panel-shell .utility-panel-surface {
   width: min(100%, clamp(32rem, 48vw, 80rem));
   color: var(--info-text);
-  background: #071512;
+  background: var(--surface);
   border: 1px solid var(--info-border);
   border-radius: 1rem;
 }
 
 .game-about .utility-panel-shell .panel-header {
   padding: var(--info-padding);
-  background: #071512;
+  background: var(--surface);
   border-bottom: 1px solid var(--info-border);
 }
 
@@ -606,7 +606,7 @@
   background: repeating-linear-gradient(
     0deg,
     transparent 0 5px,
-    rgb(95 245 211 / 0.16) 5px 6px
+    color-mix(in srgb, var(--accent) 16%, transparent) 5px 6px
   );
 }
 
@@ -625,15 +625,29 @@
 }
 
 @keyframes about-displace {
-  0%, 100% { transform: none; }
-  25% { transform: translateX(var(--circuit-shift, 8px)); }
-  50% { transform: translateX(-4px); }
-  75% { transform: translateX(3px); }
+  0%,
+  100% {
+    transform: none;
+  }
+  25% {
+    transform: translateX(var(--circuit-shift, 8px));
+  }
+  50% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(3px);
+  }
 }
 
 @keyframes about-tear {
-  0%, 100% { opacity: 0; transform: none; }
-  25%, 65% {
+  0%,
+  100% {
+    opacity: 0;
+    transform: none;
+  }
+  25%,
+  65% {
     opacity: 0.5;
     transform: translateX(var(--circuit-shift, 8px));
   }
@@ -699,15 +713,15 @@
 }
 
 .high-contrast .game-about {
-  --info-accent: #fff;
-  --info-cyan: #fff;
-  --info-violet: #fff;
-  --info-amber: #fff;
-  --info-text: #fff;
-  --info-muted: #eee;
-  --info-title: #fff;
-  --info-surface: #000;
-  --info-border: #fff;
+  --info-accent: var(--title);
+  --info-cyan: var(--title);
+  --info-violet: var(--title);
+  --info-amber: var(--title);
+  --info-text: var(--title);
+  --info-muted: var(--muted);
+  --info-title: var(--title);
+  --info-surface: var(--background);
+  --info-border: var(--title);
 }
 
 .high-contrast .game-about .about-circuit-art {
@@ -715,8 +729,8 @@
 }
 
 .high-contrast .game-about .game-button--primary {
-  color: #000;
-  background: #fff;
+  color: var(--background);
+  background: var(--title);
 }
 
 @media (prefers-reduced-motion: reduce) {
