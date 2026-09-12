@@ -7,7 +7,7 @@ import './birthday-hologram/about-copy'
 import './index.css'
 import './birthday-hologram/Landing-Finish.css'
 import './birthday-hologram/About-Game.css'
-import './birthday-hologram/Ui-Finish.css'
+import './birthday-hologram/Finish.css'
 
 import App from './App'
 
