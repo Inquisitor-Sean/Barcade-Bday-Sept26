@@ -1,0 +1,771 @@
+@font-face {
+  font-family: "About F-Zero";
+  src: url("/fonts/F-ZeroSNES.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "About Pulse";
+  src: url("/fonts/Pulse regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "About Pulse";
+  src: url("/fonts/Pulse bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "About Vector";
+  src: url("/fonts/Vector-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Landing scales with available width and height. */
+
+.experience.is-landing {
+  --landing-gutter: clamp(1rem, 3vw, 7rem);
+  --landing-gap: clamp(0.5rem, 1.5svh, 2rem);
+}
+
+.experience.is-landing .utility-nav .text-button {
+  font-size: clamp(1rem, 0.8rem + 0.4vw, 1.75rem);
+  min-height: 2.75rem;
+  padding: clamp(0.65rem, 0.6vw, 1.25rem) clamp(0.8rem, 1vw, 2rem);
+}
+
+.experience.is-landing .lock-trigger {
+  width: min(100%, 80svh, 112rem);
+}
+
+@media (max-height: 560px) {
+  .experience.is-landing .lock-trigger {
+    width: min(100%, 72svh);
+  }
+}
+
+/* Information-page foundation. */
+
+.experience.is-event {
+  display: block;
+  min-height: 100svh;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  background: var(--background);
+  background-image: none;
+}
+
+.experience.is-event::before,
+.experience.is-event::after {
+  content: none;
+}
+
+.experience.is-event .sand-scene,
+.experience.is-event .black-hole-frame,
+.experience.is-event .signal-tear {
+  display: none;
+}
+
+.experience .game-about {
+  --info-accent: var(--accent);
+  --info-cyan: var(--cyan);
+  --info-violet: var(--violet);
+  --info-amber: var(--amber);
+  --info-text: var(--text);
+  --info-muted: var(--muted);
+  --info-title: var(--title);
+  --info-surface: var(--surface);
+  --info-border: var(--line);
+  --info-font: "About Pulse", "Segoe UI", Arial, sans-serif;
+  --info-label: "About Pulse", "Segoe UI", sans-serif;
+  --info-gap: clamp(1rem, 1.6vw, 3rem);
+  --info-padding: clamp(1.25rem, 2vw, 4rem);
+  --info-body: clamp(1rem, 0.85rem + 0.35vw, 1.7rem);
+  --info-heading: clamp(1.125rem, 0.9rem + 0.6vw, 2.4rem);
+
+  position: relative;
+  isolation: isolate;
+  display: block;
+  width: 100%;
+  max-width: 200rem;
+  min-width: 0;
+  height: auto;
+  margin: 0 auto;
+  padding: clamp(1rem, 2vw, 4rem) 0 clamp(3rem, 5vw, 8rem);
+  color: var(--info-text);
+  background: var(--background);
+  font-family: var(--info-font);
+  font-size: var(--info-body);
+  font-weight: 400;
+  line-height: 1.65;
+  text-align: left;
+  opacity: 1;
+  filter: none;
+  transform: none;
+  animation: none;
+  -webkit-text-fill-color: currentColor;
+}
+
+.game-about,
+.game-about *,
+.game-about *::before,
+.game-about *::after {
+  box-sizing: border-box;
+}
+
+.game-about :where(h1, h2, h3, p, a, dt, dd, summary) {
+  overflow-wrap: anywhere;
+}
+
+.game-about p {
+  margin: 0 0 1em;
+  font: inherit;
+}
+
+.game-about p:last-child {
+  margin-bottom: 0;
+}
+
+.game-about a {
+  color: var(--info-cyan);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+}
+
+.game-about :where(button, input, select) {
+  font: inherit;
+}
+
+.game-about :where(button, a, input, select, summary):focus-visible {
+  outline: 3px solid var(--title);
+  outline-offset: 5px;
+}
+
+.game-about .game-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: clamp(1.5rem, 3vw, 5rem);
+}
+
+.game-about .game-version {
+  color: var(--info-muted);
+  font-family: var(--info-label);
+  font-size: clamp(0.8rem, 0.7rem + 0.2vw, 1.25rem);
+  letter-spacing: 0.1em;
+}
+
+.game-about .game-hero {
+  margin-bottom: clamp(1.75rem, 3vw, 5rem);
+}
+
+.experience .game-about #invitation-title {
+  max-width: 24ch;
+  margin: 0;
+  padding: 0;
+  color: var(--info-title);
+  background: none;
+  font-family: "About F-Zero", "About Pulse", sans-serif;
+  font-size: clamp(1.8rem, 1rem + 3.1vw, 8.5rem);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0.015em;
+  text-transform: none;
+  text-shadow: none;
+  -webkit-text-fill-color: currentColor;
+  background-clip: border-box;
+  opacity: 1;
+  filter: none;
+  mask: none;
+  transform: none;
+  animation: none;
+}
+
+.game-about :where(h2, h3) {
+  margin: 0 0 0.8em;
+  color: var(--tile-accent, var(--info-accent));
+  font-family: "About Pulse", "Segoe UI", sans-serif;
+  font-size: var(--info-heading);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.035em;
+}
+
+/* Opaque reading surfaces, decorative circuits underneath. */
+
+.game-about :where(.game-tile, .game-stats, .game-inventory > div) {
+  --tile-accent: var(--info-accent);
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--info-border);
+  border-radius: clamp(0.75rem, 0.7vw, 1.5rem);
+  color: var(--info-text);
+  background: var(--info-surface);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--rim) 8%, transparent);
+  transform: none;
+  animation: none;
+}
+
+.game-about .game-grid > :nth-child(2) {
+  --tile-accent: var(--info-cyan);
+}
+
+.game-about .game-grid > :nth-child(3) {
+  --tile-accent: var(--info-violet);
+}
+
+.game-about .game-inventory > :nth-child(3) {
+  --tile-accent: var(--info-amber);
+}
+
+.game-about :where(.game-tile, .game-stats, .game-inventory > div)::before {
+  content: none;
+}
+
+.game-about :where(.game-tile, .game-stats, .game-inventory > div)::after {
+  content: "";
+  position: absolute;
+  inset: auto 8% 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--tile-accent),
+    transparent
+  );
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.game-about
+  :where(.game-tile, .game-stats, .game-inventory > div)
+  > :not(.about-circuit-art) {
+  position: relative;
+  z-index: 2;
+}
+
+.game-about .game-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  margin: 0 0 var(--info-gap);
+}
+
+.game-about .game-stats > div {
+  min-width: 0;
+  padding: var(--info-padding);
+}
+
+.game-about .game-stats > div + div {
+  border-left: 1px solid var(--info-border);
+}
+
+.game-about :where(.game-stats, .game-inventory) dt {
+  margin-bottom: 0.65rem;
+  color: var(--tile-accent, var(--info-accent));
+  font-family: var(--info-label);
+  font-size: clamp(0.85rem, 0.75rem + 0.25vw, 1.5rem);
+  line-height: 1.5;
+}
+
+.game-about :where(.game-stats, .game-inventory) dd {
+  margin: 0;
+  color: var(--info-title);
+  font-family: var(--info-font);
+  font-size: clamp(1.15rem, 0.9rem + 0.65vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+}
+
+.game-about .health-segments {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--info-accent);
+  font-family: system-ui, sans-serif;
+  font-size: 0.65em;
+  letter-spacing: 0.08em;
+}
+
+.game-about .game-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--info-gap);
+}
+
+.game-about .game-tile {
+  padding: var(--info-padding);
+}
+
+.game-about .game-quest > p {
+  font-size: clamp(1.25rem, 1rem + 0.7vw, 2.75rem);
+  line-height: 1.45;
+}
+
+.game-about .game-save {
+  margin-top: clamp(1.5rem, 2vw, 3rem);
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--info-border);
+}
+
+.game-about .game-inventory {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--info-gap);
+  margin: var(--info-gap) 0;
+}
+
+.game-about .game-inventory > div {
+  padding: var(--info-padding);
+}
+
+/* Shared About buttons. */
+
+.game-about .game-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(0.75rem, 1vw, 1.5rem);
+  margin-top: clamp(1.5rem, 2vw, 3rem);
+}
+
+.game-about :where(.game-button, .game-back, .game-fx-toggle) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  min-height: 3rem;
+  max-width: 100%;
+  padding: 0.8em 1.2em;
+  border: 1px solid var(--line);
+  border-radius: 0.65rem;
+  color: var(--info-text);
+  background: var(--surface);
+  font-family: "About Pulse", "Segoe UI", sans-serif;
+  font-size: clamp(1rem, 0.85rem + 0.35vw, 1.7rem);
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: left;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--rim) 9%, transparent);
+  cursor: pointer;
+  touch-action: manipulation;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.game-about .game-button > span {
+  flex-shrink: 0;
+  color: var(--info-accent);
+}
+
+.game-about .game-button--primary {
+  color: var(--buttonText);
+  background: var(--info-accent);
+  border-color: var(--info-accent);
+  box-shadow: none;
+}
+
+.game-about .game-button--primary > span {
+  color: inherit;
+}
+
+.game-about .game-actions > :nth-child(3) {
+  border-color: var(--violet);
+}
+
+.game-about .game-actions > :nth-child(4) {
+  border-color: var(--amber);
+}
+
+.game-about .game-actions > :nth-child(5) {
+  border-color: var(--cyan);
+}
+
+.game-about .game-back {
+  justify-content: center;
+  width: clamp(3rem, 2.5vw, 5rem);
+  min-height: clamp(3rem, 2.5vw, 5rem);
+  padding: 0;
+  font-family: system-ui, sans-serif;
+  font-size: clamp(1.5rem, 1rem + 0.7vw, 2.5rem);
+}
+
+.game-about button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.game-about .game-fx-controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.game-about .game-fx-toggle {
+  min-height: 2.75rem;
+  color: var(--info-muted);
+  background: var(--surface);
+  font-size: clamp(0.875rem, 0.8rem + 0.2vw, 1.25rem);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .game-about :where(.game-button, .game-back, .game-fx-toggle):hover {
+    border-color: var(--rim);
+    background: var(--surface);
+  }
+
+  .game-about .game-button--primary:hover {
+    color: var(--buttonText);
+    background: var(--button);
+  }
+
+  .game-about .game-tile:hover {
+    border-color: var(--tile-accent);
+  }
+}
+
+.game-about :where(.game-button, .game-back):active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+/* About dialogs use the same typography and palette. */
+
+.game-about .utility-panel-shell {
+  color: var(--info-text);
+  font-family: var(--info-font);
+}
+
+.game-about .utility-panel-shell .utility-panel-surface {
+  width: min(100%, clamp(32rem, 48vw, 80rem));
+  color: var(--info-text);
+  background: var(--surface);
+  border: 1px solid var(--info-border);
+  border-radius: 1rem;
+}
+
+.game-about .utility-panel-shell .panel-header {
+  padding: var(--info-padding);
+  background: var(--surface);
+  border-bottom: 1px solid var(--info-border);
+}
+
+.game-about .utility-panel-shell .panel-header h2 {
+  color: var(--info-accent);
+  font-family: var(--info-font);
+  font-size: var(--info-heading);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.game-about .utility-panel-shell .panel-body {
+  padding: var(--info-padding);
+  color: var(--info-text);
+  font-family: var(--info-font);
+  font-size: var(--info-body);
+  line-height: 1.7;
+}
+
+.game-about .utility-panel-shell .icon-button {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  color: var(--info-text);
+  border-color: var(--info-border);
+}
+
+.game-about .panel-body > section + section {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--info-border);
+}
+
+.game-about .panel-body details {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--info-border);
+}
+
+.game-about .panel-body summary {
+  min-height: 2.75rem;
+  padding: 0.4rem 0;
+  color: var(--info-cyan);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.game-about .panel-body details[open] > summary {
+  margin-bottom: 0.75rem;
+}
+
+.game-about .game-qr-placeholder {
+  padding: var(--info-padding);
+  margin-bottom: 1.5rem;
+  border: 1px dashed var(--info-border);
+  color: var(--info-muted);
+  text-align: center;
+}
+
+.game-about .game-qr-placeholder > span {
+  display: block;
+  color: var(--info-accent);
+  font-family: system-ui, sans-serif;
+  font-size: 3rem;
+}
+
+/* Continuous electricity; glyphs never move or duplicate. */
+
+.game-about .about-circuit-art {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  color: var(--tile-accent, var(--info-accent));
+  pointer-events: none;
+  opacity: 1;
+}
+
+.game-about .about-circuit-art > svg {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  fill: none;
+  opacity: 0.8;
+  mask-image: linear-gradient(
+    90deg,
+    rgb(0 0 0 / 0.08),
+    rgb(0 0 0 / 0.16) 55%,
+    #000
+  );
+}
+
+.game-about .about-circuit-art path {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.game-about .about-circuit-traces {
+  opacity: 0.35;
+  stroke-width: 1.2;
+}
+
+.game-about .about-circuit-current {
+  opacity: 0.85;
+  stroke-width: 2.2;
+}
+
+.game-about .about-circuit-current path {
+  stroke-dasharray: 8 92;
+  animation: about-current 4s linear infinite;
+}
+
+.game-about .about-circuit-current path:nth-child(2) {
+  animation-duration: 5.5s;
+  animation-direction: reverse;
+}
+
+.game-about .about-circuit-current path:nth-child(3) {
+  animation-duration: 7s;
+  animation-delay: -3s;
+}
+
+.game-about .about-circuit-nodes {
+  fill: currentColor;
+  opacity: 0.6;
+}
+
+.game-about .about-circuit-tear {
+  position: absolute;
+  top: 42%;
+  left: -12px;
+  right: -12px;
+  height: 22%;
+  opacity: 0;
+  border-block: 1px solid currentColor;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 5px,
+    color-mix(in srgb, var(--accent) 16%, transparent) 5px 6px
+  );
+}
+
+.game-about .circuit-tearing .about-circuit-art > svg {
+  animation: about-displace 260ms steps(2, end);
+}
+
+.game-about .circuit-tearing .about-circuit-tear {
+  animation: about-tear 260ms steps(2, end);
+}
+
+@keyframes about-current {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+@keyframes about-displace {
+  0%,
+  100% {
+    transform: none;
+  }
+  25% {
+    transform: translateX(var(--circuit-shift, 8px));
+  }
+  50% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(3px);
+  }
+}
+
+@keyframes about-tear {
+  0%,
+  100% {
+    opacity: 0;
+    transform: none;
+  }
+  25%,
+  65% {
+    opacity: 0.5;
+    transform: translateX(var(--circuit-shift, 8px));
+  }
+}
+
+/* Responsive layouts through 4K, without enlarging the global rem. */
+
+@media (max-width: 70rem) {
+  .game-about .game-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .game-about .game-quest {
+    grid-column: 1 / -1;
+  }
+
+  .game-about .game-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .game-about .game-stats > div:nth-child(3) {
+    border-left: 0;
+  }
+
+  .game-about .game-stats > div:nth-child(n + 3) {
+    border-top: 1px solid var(--info-border);
+  }
+}
+
+@media (max-width: 40rem) {
+  .game-about .game-grid,
+  .game-about .game-inventory {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .game-about .game-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .game-about .game-button {
+    width: 100%;
+  }
+}
+
+/* Offscreen and user-paused effects stop consuming animation work. */
+
+.game-about .about-circuit-art[data-running="false"] *,
+.game-about[data-fx-paused="true"] .about-circuit-art * {
+  animation-play-state: paused !important;
+}
+
+.game-about[data-fx-paused="true"] .about-circuit-tear {
+  display: none;
+}
+
+.reduced-motion .game-about .about-circuit-art * {
+  animation: none !important;
+}
+
+.reduced-motion .game-about .about-circuit-tear {
+  display: none;
+}
+
+.high-contrast .game-about {
+  --info-accent: var(--title);
+  --info-cyan: var(--title);
+  --info-violet: var(--title);
+  --info-amber: var(--title);
+  --info-text: var(--title);
+  --info-muted: var(--muted);
+  --info-title: var(--title);
+  --info-surface: var(--background);
+  --info-border: var(--title);
+}
+
+.high-contrast .game-about .about-circuit-art {
+  display: none;
+}
+
+.high-contrast .game-about .game-button--primary {
+  color: var(--background);
+  background: var(--title);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-about .about-circuit-art * {
+    animation: none !important;
+  }
+
+  .game-about .about-circuit-tear {
+    display: none;
+  }
+
+  .game-about :where(button, a) {
+    transition: none !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .game-about .about-circuit-art {
+    display: none;
+  }
+
+  .experience .game-about {
+    --info-text: CanvasText;
+    --info-title: CanvasText;
+    --info-muted: CanvasText;
+    --info-accent: LinkText;
+    --info-cyan: LinkText;
+    --info-border: CanvasText;
+    --info-surface: Canvas;
+    background: Canvas;
+  }
+
+  .game-about .game-button {
+    color: ButtonText;
+    background: ButtonFace;
+    border-color: ButtonText;
+  }
+}

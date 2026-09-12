@@ -1,0 +1,52 @@
+PALETTE + UI RECOMPOUND
+
+Replace the six matching files inside src/birthday-hologram with the included files.
+These are complete replacements, not snippets to append:
+- palette.ts
+- Ui-Finish.css
+- About-Game.css
+- HologramInvite.tsx
+- Panel.tsx
+- i18n.ts
+
+Keep your stylesheet order:
+import './index.css'
+import './birthday-hologram/Landing-Finish.css'
+import './birthday-hologram/About-Game.css'
+import './birthday-hologram/Ui-Finish.css'
+
+Keep the filename capitalization already established: Ui-Finish.css.
+Your existing LandingPage imports palette.ts, loops over colorKeys and publishes
+each color as a CSS variable. No LandingPage replacement is required.
+
+CHANGES
+All painted colors in the two replacement stylesheets now read palette variables.
+Black values retained in About-Game.css are SVG mask coverage, not theme colors.
+Surface shading, highlights, hover colors, popup borders and circuit color are
+derived from the palette. The button control sets primary button fill;
+buttonText sets its text. Level controls the level number.
+Three new color controls: cyan, violet, amber, with English and Spanish labels.
+HologramInvite removes the note's fixed inline colors and sets dialog tones.
+Panel supports those tones; existing escape/outside-click/focus handling remains.
+The UI stylesheet consolidates the button and popup art pass into one file.
+The particle renderer and event/calendar behavior are unchanged.
+
+SAVED COLORS
+Your stored 13-color palette stays intact. New accents receive defaults.
+Reset colors applies the full new teal palette through your existing reset button.
+High contrast uses contrastPalette temporarily and preserves your selected colors.
+Custom color combinations are not automatically contrast-corrected.
+
+VALIDATION
+Both stylesheets parsed and minified with Lightning CSS.
+TS/TSX files parsed and formatted with Prettier.
+Executed palette assertions for old preferences, added keys, malformed data,
+blocked storage, independent reset defaults and contrast key coverage.
+Full app build and browser/phone visual checks have not been performed.
+
+TOMORROW
+1. Run yarn build.
+2. Open Colors and change surface, text, accent, button, buttonText and each new accent.
+3. Check About, Calendar and another dialog; reload to verify persistence.
+4. Toggle high contrast, then turn it off; your chosen colors should return.
+5. Reset colors to preview the new default teal theme.
